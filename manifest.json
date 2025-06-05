@@ -1,20 +1,20 @@
 {
-  "name": "Conversor de OFX para XLSX",
-  "short_name": "Conversor OFX",
-  "start_url": ".",
+  "name": "Conversor de OFX",
+  "short_name": "OFX Converter",
+  "start_url": "https://movendo-conversorofx.t4neco.easypanel.host/",
   "display": "standalone",
   "background_color": "#f9f9f9",
   "theme_color": "#5ebc67",
   "icons": [
     {
       "src": "icon.png",
-      "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "type": "image/png"
     },
     {
       "src": "icon.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "512x512",
+      "type": "image/png"
     }
   ]
 }
