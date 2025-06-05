@@ -1,0 +1,20 @@
+{
+  "name": "Conversor de OFX para XLSX",
+  "short_name": "Conversor OFX",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#f9f9f9",
+  "theme_color": "#5ebc67",
+  "icons": [
+    {
+      "src": "icon.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "icon.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}
