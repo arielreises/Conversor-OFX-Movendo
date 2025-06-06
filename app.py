@@ -72,31 +72,6 @@ st.markdown("""
 # 📥 Upload
 uploaded_file = st.file_uploader("Envie o arquivo .OFX", type=["ofx"])
 
-# # 💡 Função IA
-# def classificar_ia(descricao):
-#     prompt = f"""
-# Você é um assistente financeiro. Seu trabalho é identificar o meio de pagamento utilizado com base na descrição da transação bancária abaixo.
-
-# Retorne **somente o nome do meio de pagamento**, como: Pix Recebido, Pix QR Code, Cielo, Stone, Rede, Getnet, VR, Alelo, Sodexo (ou Pluxee), Ben Visa Vale, Transferência, Cartão Débito, Cartão Crédito, Dinheiro, etc.
-
-# Descrição da transação: "{descricao}"
-
-# Resposta:
-# """
-#     try:
-#         response = client.chat.completions.create(
-#             model="gpt-3.5-turbo",
-#             messages=[
-#                 {"role": "system", "content": "Você é um analista financeiro especialista em identificar meios de pagamento."},
-#                 {"role": "user", "content": prompt}
-#             ],
-#             temperature=0.2,
-#             max_tokens=10
-#         )
-#         return response.choices[0].message.content.strip()
-#     except Exception as e:
-#         st.warning(f"Erro na IA para descrição: {descricao}\n\nMotivo:\n{e}")
-#         return "Erro"
 
 if uploaded_file:
     try:
@@ -139,56 +114,6 @@ if uploaded_file:
             file_name=file_name_simple,
             mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
         )
-
-    #     # Botão para iniciar a classificação com IA
-    #     if st.button("Classificar com IA"):
-    #         st.subheader("Classificando os meios de pagamento com IA...")
-
-    #         cache_respostas = {}
-    #         progress_bar = st.progress(0)
-    #         status_text = st.empty()
-    #         total = len(df)
-    #         classificados = []
-
-    #         for i, desc in enumerate(df["Descrição"]):
-    #             if desc in cache_respostas:
-    #                 resposta = cache_respostas[desc]
-    #             else:
-    #                 resposta = classificar_ia(desc) if desc.strip() else "Vazio"
-    #                 cache_respostas[desc] = resposta
-
-    #             classificados.append(resposta)
-    #             progress_bar.progress((i + 1) / total)
-    #             status_text.text(f"Classificando ({i + 1}/{total})...")
-
-    #         df["Meio de Pagamento"] = classificados
-
-    #         status_text.text("✅ Classificação concluída!")
-    #         progress_bar.empty()
-
-    #         resumo = df.groupby("Meio de Pagamento")["Valor"].sum().reset_index()
-    #         resumo = resumo.sort_values("Valor", ascending=False)
-
-    #         st.subheader("Dados classificados")
-    #         st.dataframe(df)
-
-    #         st.subheader("Resumo por Meio de Pagamento")
-    #         st.dataframe(resumo)
-
-    #         # Gerar arquivo XLSX com classificação
-    #         file_name_classificado = uploaded_file.name.replace(".ofx", "") + "_convertido_classificado.xlsx"
-    #         output_classificado = BytesIO()
-    #         with pd.ExcelWriter(output_classificado, engine='xlsxwriter') as writer:
-    #             df.to_excel(writer, sheet_name="Transações", index=False)
-    #             resumo.to_excel(writer, sheet_name="Resumo IA", index=False)
-    #         output_classificado.seek(0)
-
-    #         st.download_button(
-    #             label="Baixar arquivo convertido e classificado (.xlsx)",
-    #             data=output_classificado,
-    #             file_name=file_name_classificado,
-    #             mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-    #         )
 
     except Exception as e:
         st.error(f"Erro ao processar o arquivo: {e}")
