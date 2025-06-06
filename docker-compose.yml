@@ -1,0 +1,20 @@
+version: "3.9"
+
+services:
+  ofx_converter:
+    build: .
+    container_name: ofx_to_xlsx
+    expose:
+      - "8501"
+    restart: always
+
+  nginx:
+    image: nginx:latest
+    container_name: ofx_nginx_proxy
+    ports:
+      - "80:80"
+    depends_on:
+      - ofx_converter
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    restart: always
